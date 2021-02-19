@@ -1,0 +1,9 @@
+samba:
+  image: vimagick/samba
+  container_name: samba
+  volumes:
+    - ./smb.conf:/etc/samba/smb.conf
+    - ../mnt:/mnt
+  net: host
+  tty: yes
+  restart: always
