@@ -1,7 +1,7 @@
 samba:
   image: vimagick/samba
   # arm
-  # forumi0721alpinearmhf/alpine-armhf-samba
+  # image: forumi0721alpinearmhf/alpine-armhf-samba
   container_name: samba
   volumes:
     - ./smb.conf:/etc/samba/smb.conf
