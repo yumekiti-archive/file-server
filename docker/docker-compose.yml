@@ -11,4 +11,4 @@ services:
             - ./smb.conf:/etc/samba/smb.conf
             - ../mnt:/mnt
         tty: yes
-        command: [/etc/init.d/smb, restart]
+        command: smbd reload-config
