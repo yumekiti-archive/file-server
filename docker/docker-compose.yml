@@ -1,12 +1,14 @@
-samba:
-    image: vimagick/samba
-    # arm
-    # image: forumi0721alpinearmhf/alpine-armhf-samba
-    container_name: samba
-    volumes:
-        - ./smb.conf:/etc/samba/smb.conf
-        - ../mnt:/mnt
-    net: host
-    tty: yes
-    restart: always
-    command: /etc/init.d/smb restart
+version: "3"
+
+services:
+
+    samba:
+        image: vimagick/samba
+        # arm
+        # image: forumi0721alpinearmhf/alpine-armhf-samba
+        container_name: samba
+        volumes:
+            - ./smb.conf:/etc/samba/smb.conf
+            - ../mnt:/mnt
+        tty: yes
+        command: [/etc/init.d/smb, restart]
