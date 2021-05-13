@@ -10,6 +10,6 @@ services:
         volumes:
             - ./smb.conf:/etc/samba/smb.conf
             - ../mnt:/mnt
-        net: host
         tty: yes
         command: smbd reload-config
+        network_mode: host
