@@ -3,13 +3,13 @@ version: "3"
 services:
 
     samba:
-        image: vimagick/samba
-        # arm
-        # image: forumi0721alpinearmhf/alpine-armhf-samba
         container_name: samba
+        build:
+            context: ../
+            dockerfile: ./docker/dockerfile
         volumes:
             - ./smb.conf:/etc/samba/smb.conf
-            - ../mnt:/mnt
-        tty: yes
-        command: smbd reload-config
+            - ../share:/samba/share
+        tty: true
+        command: nmbd restart -D && smbd restart -FS --no-process-group < /dev/null
         network_mode: host
