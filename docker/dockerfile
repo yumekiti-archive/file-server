@@ -1,7 +1,0 @@
-FROM vimagick/samba
-
-# raspi
-# FROM forumi0721alpinearmhf/alpine-armhf-samba
-
-RUN mkdir -p /samba/share && \
-    chmod -R 0777 /samba/share

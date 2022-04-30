@@ -1,16 +1,30 @@
+dc := docker compose -f ./docker/docker-compose.yml
+
+.PHONY: up
 up:
-	docker-compose -f ./docker/docker-compose.yml up -d --build
+	$(dc) up -d --build
+
+.PHONY: down
 down:
-	docker-compose -f ./docker/docker-compose.yml down
+	$(dc) down
+
+.PHONY: restart
+restart:
+	$(dc) restart
+
+.PHONY: reup
+reup:
+	@make down
+	@make up
+
+.PHONY: rm
 rm:
-	docker-compose -f ./docker/docker-compose.yml down --rmi all
-log:
-	docker-compose -f ./docker/docker-compose.yml logs -f
-sh:
-	docker-compose -f ./docker/docker-compose.yml exec samba /bin/sh
-docker-crean:
-	docker stop `docker ps -aq` ;\
-	docker rm `docker ps -aq` ; \
-	docker rmi `docker images -q` ; \
-	docker system prune ; \
-	docker volume prune
+	$(dc) down --rmi all
+
+.PHONY: logs
+logs:
+	$(dc) logs -f
+
+.PHONY: samba
+samba:
+	$(dc) exec samba /bin/sh

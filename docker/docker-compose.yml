@@ -1,15 +1,13 @@
-version: "3"
+version: "3.9"
 
 services:
 
-    samba:
-        container_name: samba
-        build:
-            context: ../
-            dockerfile: ./docker/dockerfile
-        volumes:
-            - ./smb.conf:/etc/samba/smb.conf
-            - ../share:/samba/share
-        tty: true
-        command: nmbd restart -D && smbd restart -FS --no-process-group < /dev/null
-        network_mode: host
+  samba:
+    image: vimagick/samba
+    container_name: samba
+    volumes:
+        - ./smb.conf:/etc/samba/smb.conf
+        - ../share:/samba/share
+    net: host
+    tty: yes
+    restart: always
